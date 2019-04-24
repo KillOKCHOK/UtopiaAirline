@@ -1,4 +1,4 @@
-package com.smppthstack.app.model;
+package com.utopia.app.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

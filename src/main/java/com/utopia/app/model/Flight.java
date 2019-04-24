@@ -10,8 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-@Entity(name="flight")
+@Entity
+@Table(name="flight")
 public class Flight {
     
     @Id
@@ -40,7 +42,6 @@ public class Flight {
     private Float price;
     
     
-
     public Float getPrice() {
 		return price;
 	}
@@ -96,7 +97,5 @@ public class Flight {
     public void setCapacity(Integer capacity) {
         this.capacity = capacity;
     }
-    
-    
     
 }

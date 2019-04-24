@@ -9,5 +9,4 @@ public class UtopiaProjectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(UtopiaProjectApplication.class, args);
 	}
-
 }

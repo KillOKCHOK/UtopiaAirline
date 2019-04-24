@@ -1,4 +1,4 @@
-package com.utopia.app.controller;
+package com.utopia.app.curdcontroller;
 
 import java.util.List;
 

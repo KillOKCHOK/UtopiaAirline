@@ -8,18 +8,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "airport")
 public class Airport {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="airport_id")
-    private int airportId;
+    private Integer airportId;
     
     @Column(name="airport_code")
-    private int airportCode;
+    private String airportCode;
     
     @Column(name="airport_name")
     private String airportName;
@@ -32,15 +34,15 @@ public class Airport {
         return airportId;
     }
 
-    public void setAirportId(int airportId) {
+    public void setAirportId(Integer airportId) {
         this.airportId = airportId;
     }
 
-    public int getAirportCode() {
+    public String getAirportCode() {
         return airportCode;
     }
 
-    public void setAirportCode(int airportCode) {
+    public void setAirportCode(String airportCode) {
         this.airportCode = airportCode;
     }
 
@@ -60,7 +62,4 @@ public class Airport {
         this.city = city;
     }
     
-    
-    
-
 }

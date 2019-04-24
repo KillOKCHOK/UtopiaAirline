@@ -7,8 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-@Entity( name = "ticket")
+@Entity
+@Table(name = "ticket")
 public class Ticket {
 
     @Id
@@ -61,6 +63,5 @@ public class Ticket {
     public void setFlight(Flight flight) {
         this.flight = flight;
     }
-    
     
 }

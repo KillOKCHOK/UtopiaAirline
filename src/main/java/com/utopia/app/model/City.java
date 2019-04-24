@@ -5,37 +5,46 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "city")
 public class City {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="city_id")
-    private int cityId;
-    
-    @Column
-    private String name;
 
-    @Column
-    private String country;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "city_id")
+	private int cityId;
 
-    public int getCityId() {
-        return cityId;
-    }
+	@Column(name = "city_name")
+	private String cityName;
 
-    public void setCityId(int cityId) {
-        this.cityId = cityId;
-    }
+	@Column
+	private String country;
 
-    public String getCountry() {
-        return country;
-    }
+	public int getCityId() {
+		return cityId;
+	}
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-    
-    
-    
+	public void setCityId(int cityId) {
+		this.cityId = cityId;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	
 }

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity
+@Entity( name = "booking")
 public class Booking {
 
 	@Id
@@ -29,8 +29,6 @@ public class Booking {
 //	@OneToMany(mappedBy="ticketId")
 //	private List<Ticket> tickets;
 	
-	
-
 	public User getUser() {
 		return user;
 	}

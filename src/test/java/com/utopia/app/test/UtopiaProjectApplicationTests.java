@@ -1,4 +1,4 @@
-package com.smppthstack.app;
+package com.utopia.app.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.utopia.app.model.Booking;
-import com.utopia.app.repository.BookingRepo;
+import com.utopia.app.service.BookingService;
 
 @RestController
 @RequestMapping("/adm")
 public class BookingController {
 	
 	@Autowired
-	private BookingRepo bookingRepo;
+	private BookingService bookingRepo;
 	
 	@GetMapping("/bookings")
 	public ResponseEntity<List<Booking>> getAllBooking(){

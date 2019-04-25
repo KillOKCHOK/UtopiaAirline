@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.utopia.app.model.Flight;
-import com.utopia.app.repository.FlightRepo;
+import com.utopia.app.service.FlightService;
 
 @RestController
 @RequestMapping("/adm")
 public class FlightController {
 	
 	@Autowired
-	private FlightRepo flightRepo;
+	private FlightService flightRepo;
 	
 	@GetMapping("/flights")
 	public ResponseEntity<List<Flight>> getAllFlight(){

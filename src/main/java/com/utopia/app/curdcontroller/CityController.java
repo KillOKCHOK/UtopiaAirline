@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.utopia.app.model.City;
-import com.utopia.app.repository.CityRepo;
+import com.utopia.app.service.CityService;
 
 @RestController
 @RequestMapping("/adm")
 public class CityController {
 	
 	@Autowired
-	private CityRepo cityRepo;
+	private CityService cityRepo;
 	
 	@GetMapping("/cities")
 	public ResponseEntity<List<City>> getAllCity(){

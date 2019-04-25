@@ -15,19 +15,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.utopia.app.model.Airport;
-import com.utopia.app.repository.AirportRepo;
+import com.utopia.app.service.AirportService;
 
 @RestController
 @RequestMapping("/adm")
 public class AirportController {
 	
 	@Autowired
-	private AirportRepo airportRepo;
+	private AirportService airportServ;
 	
 	@GetMapping("/airports")
 	public ResponseEntity<List<Airport>> getAllAirport(){
 		try {
-			List<Airport> airports = airportRepo.getAirportAll();
+			List<Airport> airports = airportServ.getAirportAll();
 			return new ResponseEntity<List<Airport>>(airports, HttpStatus.OK);
 		}catch(Exception e) {
 			return new ResponseEntity<List<Airport>>(HttpStatus.BAD_REQUEST);
@@ -37,7 +37,7 @@ public class AirportController {
 	@GetMapping("/airport/{airportId}")
 	public ResponseEntity<Airport> getAirportById(@PathVariable long airportId){
 		try {
-			Airport airport = airportRepo.getAirportById(airportId);
+			Airport airport = airportServ.getAirportById(airportId);
 			return new ResponseEntity<Airport>(airport,HttpStatus.OK);
 		}catch(Exception e) {
 			return new ResponseEntity<Airport>(HttpStatus.BAD_REQUEST);
@@ -47,7 +47,7 @@ public class AirportController {
 	@PutMapping("/airport")
 	public ResponseEntity<Airport> updateAirport(@RequestBody Airport airport){
 		try {
-			airportRepo.updateAirport(airport);
+			airportServ.updateAirport(airport);
 			return new ResponseEntity<Airport>(HttpStatus.ACCEPTED);
 		}catch(Exception e) {
 			return new ResponseEntity<Airport>(HttpStatus.BAD_REQUEST);
@@ -57,7 +57,7 @@ public class AirportController {
 	@PostMapping("/airport")
 	public ResponseEntity<Airport> addAirport(@RequestBody Airport airport){
 		try {
-			airportRepo.createAirport(airport);
+			airportServ.createAirport(airport);
 			return new ResponseEntity<Airport>(HttpStatus.CREATED);
 		}catch(Exception e) {
 			return new ResponseEntity<Airport>(HttpStatus.BAD_REQUEST);
@@ -67,7 +67,7 @@ public class AirportController {
 	@DeleteMapping("/airport/{airportId}")
 	public ResponseEntity<Airport> deleteAirport(@PathVariable long airportId){
 		try {
-			airportRepo.deleteAirport(airportId);
+			airportServ.deleteAirport(airportId);
 			return new ResponseEntity<Airport>(HttpStatus.ACCEPTED);
 		}catch(Exception e) {
 			return new ResponseEntity<Airport>(HttpStatus.BAD_REQUEST);

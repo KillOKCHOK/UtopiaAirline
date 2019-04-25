@@ -1,6 +1,6 @@
 package com.utopia.app.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="flight")
@@ -22,9 +24,11 @@ public class Flight {
     private Long flightId;
     
     @Column(name = "dep_dateTime")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date depDateTime;
     
     @Column(name = "arr_dateTime")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date arrDateTime;
     
     @ManyToOne(fetch=FetchType.EAGER)

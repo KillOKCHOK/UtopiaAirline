@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.utopia.app.model.User;
-import com.utopia.app.repository.UserRepo;
+import com.utopia.app.service.UserService;
 
 @RestController
 @RequestMapping("/adm")
 public class UserController {
 	
 	@Autowired
-	private UserRepo userRepo;
+	private UserService userRepo;
 	
 	@GetMapping("/users")
 	public ResponseEntity<List<User>> getAllUser(){

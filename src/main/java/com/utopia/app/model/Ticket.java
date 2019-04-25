@@ -2,6 +2,7 @@ package com.utopia.app.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,19 +27,19 @@ public class Ticket {
     @JoinColumn(name = "flight_id" )
     private Flight flight;
     
-//    @ManyToOne(fetch=FetchType.LAZY )
-//    @JoinColumn(name="booking_id")
-//    private Booking booking;
+    @ManyToOne(fetch=FetchType.LAZY )
+    @JoinColumn(name="booking_id")
+    private Booking booking;
     
     
 
-//    public Booking getBooking() {
-//		return booking;
-//	}
-//
-//	public void setBooking(Booking booking) {
-//		this.booking = booking;
-//	}
+    public Booking getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
 
 	public Integer getTicketId() {
         return ticketId;

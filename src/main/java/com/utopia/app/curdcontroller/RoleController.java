@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.utopia.app.model.Role;
-import com.utopia.app.repository.RoleRepo;
+import com.utopia.app.service.RoleService;
 
 @RestController
 @RequestMapping("/adm")
 public class RoleController {
 	
 	@Autowired
-	private RoleRepo roleRepo;
+	private RoleService roleRepo;
 	
 	@GetMapping("/roles")
 	public ResponseEntity<List<Role>> getAllRole(){

@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.utopia.app.model.Payment;
-import com.utopia.app.repository.PaymentRepo;
+import com.utopia.app.service.PaymentService;
 
 @RestController
 @RequestMapping("/adm")
 public class PaymentController {
 	
 	@Autowired
-	private PaymentRepo paymentRepo;
+	private PaymentService paymentRepo;
 	
 	@GetMapping("/payments")
 	public ResponseEntity<List<Payment>> getAllPayment(){

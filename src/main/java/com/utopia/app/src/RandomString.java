@@ -1,7 +1,6 @@
 package com.utopia.app.src;
 
 import java.security.SecureRandom;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 

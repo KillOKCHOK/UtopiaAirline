@@ -7,14 +7,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "city")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class City {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "city_id")
-	private int cityId;
+	private Long cityId;
 
 	@Column(name = "city_name")
 	private String cityName;
@@ -22,11 +25,11 @@ public class City {
 	@Column
 	private String country;
 
-	public int getCityId() {
+	public Long getCityId() {
 		return cityId;
 	}
 
-	public void setCityId(int cityId) {
+	public void setCityId(Long cityId) {
 		this.cityId = cityId;
 	}
 

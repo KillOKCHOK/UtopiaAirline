@@ -14,8 +14,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="flight")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Flight {
     
     @Id
@@ -35,7 +38,7 @@ public class Flight {
     @JoinColumn(name="dep_airport_id")
     private Airport depAirport;
     
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="arr_airport_id")
     private Airport arrAirport;
     

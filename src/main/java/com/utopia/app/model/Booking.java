@@ -14,27 +14,25 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity( name = "booking")
 public class Booking {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="booking_id")
-	private int bookingId;
+	private Long bookingId;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@Column
-	private String confirmationCode;
+	@Column(name = "confirmation_num")
+	private String confirmationNum;
 	
 	@Column
 	private Boolean orderSubmit;
-	
-	@ManyToOne
-	@JoinColumn(name="payment_id")
-	private Payment payment;
 	
 	@ManyToOne
 	@JoinColumn(name="create_user_id")
@@ -54,12 +52,16 @@ public class Booking {
 	
 	@OneToMany(mappedBy="booking")
 	private List<Ticket> tickets;
+	
+	@OneToMany(mappedBy="booking")
+	@JsonIgnore
+	private List<Payment> payment;
 
-	public int getBookingId() {
+	public Long getBookingId() {
 		return bookingId;
 	}
 
-	public void setBookingId(int bookingId) {
+	public void setBookingId(Long bookingId) {
 		this.bookingId = bookingId;
 	}
 
@@ -72,11 +74,11 @@ public class Booking {
 	}
 
 	public String getConfirmationCode() {
-		return confirmationCode;
+		return confirmationNum;
 	}
 
-	public void setConfirmationCode(String confirmationCode) {
-		this.confirmationCode = confirmationCode;
+	public void setConfirmationCode(String confirmationNum) {
+		this.confirmationNum = confirmationNum;
 	}
 
 	public Boolean getOrderSubmit() {
@@ -85,14 +87,6 @@ public class Booking {
 
 	public void setOrderSubmit(Boolean orderSubmit) {
 		this.orderSubmit = orderSubmit;
-	}
-
-	public Payment getPayment() {
-		return payment;
-	}
-
-	public void setPayment(Payment payment) {
-		this.payment = payment;
 	}
 
 	public User getCreateUser() {
@@ -134,5 +128,13 @@ public class Booking {
 	public void setTickets(List<Ticket> tickets) {
 		this.tickets = tickets;
 	}
-	
+
+	public List<Payment> getPayment() {
+		return payment;
+	}
+
+	public void setPayment(List<Payment> payment) {
+		this.payment = payment;
+	}
+
 }

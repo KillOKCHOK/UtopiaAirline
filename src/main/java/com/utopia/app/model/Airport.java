@@ -18,7 +18,7 @@ public class Airport {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="airport_id")
-    private Integer airportId;
+    private Long airportId;
     
     @Column(name="airport_code")
     private String airportCode;
@@ -30,11 +30,11 @@ public class Airport {
     @JoinColumn(name="city_id")
     private City city;
 
-    public int getAirportId() {
+    public Long getAirportId() {
         return airportId;
     }
 
-    public void setAirportId(Integer airportId) {
+    public void setAirportId(Long airportId) {
         this.airportId = airportId;
     }
 

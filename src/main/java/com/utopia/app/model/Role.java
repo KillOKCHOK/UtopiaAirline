@@ -15,16 +15,16 @@ public class Role {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "role_id")
-	private long roleId;
+	private Long roleId;
 	
 	@Column(name = "role_name")
 	private String roleName;
 
-	public long getRoleId() {
+	public Long getRoleId() {
 		return roleId;
 	}
 
-	public void setRoleId(long roleId) {
+	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
 

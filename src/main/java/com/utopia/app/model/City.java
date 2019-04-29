@@ -29,7 +29,7 @@ public class City {
 		return cityId;
 	}
 
-	public void setCityId(Long cityId) {
+	public void setCityId(long cityId) {
 		this.cityId = cityId;
 	}
 

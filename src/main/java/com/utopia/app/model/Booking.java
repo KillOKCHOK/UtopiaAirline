@@ -61,7 +61,7 @@ public class Booking {
 		return bookingId;
 	}
 
-	public void setBookingId(Long bookingId) {
+	public void setBookingId(long bookingId) {
 		this.bookingId = bookingId;
 	}
 

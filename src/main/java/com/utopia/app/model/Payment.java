@@ -45,7 +45,7 @@ public class Payment {
 		this.booking = booking;
 	}
 
-	public void setPaymentId(Long paymentId) {
+	public void setPaymentId(long paymentId) {
 		this.paymentId = paymentId;
 	}
 

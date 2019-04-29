@@ -44,7 +44,7 @@ public class TicketControllerTest {
 	@Test
 	public void get_list_of_tickets_return_ok() throws Exception {
 		Ticket t = new Ticket();
-		t.setTicketId(1);
+		t.setTicketId((long) 1);
 		List<Ticket> tickets = new ArrayList<>();
 		tickets.add(t);
 		
@@ -58,7 +58,7 @@ public class TicketControllerTest {
 	@Test
 	public void get_one_ticket_return_ok() throws Exception {
 		Ticket t = new Ticket();
-		t.setTicketId(1);
+		t.setTicketId((long) 1);
 		
 		when(service.getTicketById(1)).thenReturn(t);
 		
@@ -69,7 +69,7 @@ public class TicketControllerTest {
 	@Test
 	public void create_ticket_return_created() throws Exception {
 		Ticket t = new Ticket();
-		t.setTicketId(1);
+		t.setTicketId((long) 1);
 		t.setBooking(new Booking());
 		t.setUser(new User());
 		
@@ -83,7 +83,7 @@ public class TicketControllerTest {
 	@Test
 	public void update_ticket_return_accepted() throws Exception{
 		Ticket t = new Ticket();
-		t.setTicketId(1);
+		t.setTicketId((long) 1);
 		t.setBooking(new Booking());
 		t.setUser(new User());
 		

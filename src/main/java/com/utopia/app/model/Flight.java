@@ -61,7 +61,7 @@ public class Flight {
         return flightId;
     }
 
-    public void setFlightId(long flightId) {
+    public void setFlightId(Long flightId) {
         this.flightId = flightId;
     }
 

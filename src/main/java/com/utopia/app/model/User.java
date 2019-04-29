@@ -53,7 +53,7 @@ public class User /* implements UserDetails */ {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 

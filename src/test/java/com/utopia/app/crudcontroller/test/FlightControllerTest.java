@@ -45,11 +45,11 @@ public class FlightControllerTest {
 	@Test
 	public void get_list_of_flights_return_ok() throws Exception {
 		Flight f = new Flight();
-		f.setFlightId(1);
+		f.setFlightId((long) 1);
 		f.setPrice((float)280);
 		f.setDepDateTime(new Date());
 		Airport a = new Airport();
-		a.setAirportId(1);
+		a.setAirportId((long) 1);
 		a.setAirportName("DCA");
 		List<Flight> allFlights = new ArrayList<>();
 		allFlights.add(f);
@@ -67,10 +67,10 @@ public class FlightControllerTest {
 	@Test
 	public void get_one_flight_return_ok() throws Exception {
 		Flight f = new Flight();
-		f.setFlightId(1);
+		f.setFlightId((long) 1);
 		f.setPrice((float)280);
 		Airport a = new Airport();
-		a.setAirportId(1);
+		a.setAirportId((long) 1);
 		a.setAirportName("DCA");
 				
 		when(service.getFlightById(1)).thenReturn(f);
@@ -84,10 +84,10 @@ public class FlightControllerTest {
 	@Test 
 	public void create_new_flight_return_created() throws Exception {
 		Flight f = new Flight();
-		f.setFlightId(1);
+		f.setFlightId((long)1);
 		f.setPrice((float)280);
 		Airport a = new Airport();
-		a.setAirportId(1);
+		a.setAirportId((long)1);
 		a.setAirportName("DCA");
 		
 		mvc.perform(post("/adm/flight")
@@ -101,11 +101,11 @@ public class FlightControllerTest {
 	@Test
 	public void update_flight_return_accepted() throws Exception {
 		Flight f = new Flight();
-		f.setFlightId(1);
+		f.setFlightId((long)1);
 		f.setPrice((float)280);
 		f.setDepDateTime(new Date());
 		Airport a = new Airport();
-		a.setAirportId(1);
+		a.setAirportId((long)1);
 		a.setAirportName("DCA");
 		
 		mvc.perform(put("/adm/flight")

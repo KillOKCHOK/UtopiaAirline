@@ -43,7 +43,7 @@ public class CityControllerTest {
 	@Test
 	public void get_list_of_citys_return_ok() throws Exception {
 		City c = new City();
-		c.setCityId(1);
+		c.setCityId((long)1);
 		c.setCityName("Seattle");
 		c.setCountry("USA");
 		List<City> cities = new ArrayList<>();
@@ -61,7 +61,7 @@ public class CityControllerTest {
 	@Test
 	public void get_one_city_return_ok() throws Exception {
 		City c = new City();
-		c.setCityId(1);
+		c.setCityId((long)1);
 		c.setCityName("Seattle");
 		c.setCountry("USA");
 		
@@ -76,7 +76,7 @@ public class CityControllerTest {
 	@Test
 	public void create_city_return_created() throws Exception {
 		City c = new City();
-		c.setCityId(1);
+		c.setCityId((long)1);
 		c.setCityName("Seattle");
 		c.setCountry("USA");
 		
@@ -90,7 +90,7 @@ public class CityControllerTest {
 	@Test
 	public void update_city_return_accepted() throws Exception{
 		City c = new City();
-		c.setCityId(1);
+		c.setCityId((long)1);
 		c.setCityName("Seattle");
 		c.setCountry("USA");
 		

@@ -43,7 +43,7 @@ public class RoleControllerTest {
 	@Test
 	public void get_list_of_roles_return_ok() throws Exception {
 		Role r = new Role();
-		r.setRoleId(1);
+		r.setRoleId((long) 1);
 		r.setRoleName("Agent");
 		List<Role> roles = new ArrayList<>();
 		roles.add(r);
@@ -59,7 +59,7 @@ public class RoleControllerTest {
 	@Test
 	public void get_one_role_return_ok() throws Exception {
 		Role r = new Role();
-		r.setRoleId(1);
+		r.setRoleId((long) 1);
 		r.setRoleName("Agent");
 		
 		when(service.getRoleById(1)).thenReturn(r);
@@ -84,7 +84,7 @@ public class RoleControllerTest {
 	@Test
 	public void update_role_return_accepted() throws Exception{
 		Role r = new Role();
-		r.setRoleId(1);
+		r.setRoleId((long) 1);
 		r.setRoleName("Agent");
 		
 		mvc.perform(put("/adm/role")

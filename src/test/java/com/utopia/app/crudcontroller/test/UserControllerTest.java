@@ -43,7 +43,7 @@ public class UserControllerTest {
 	@Test
 	public void get_list_of_users_return_ok() throws Exception {
 		User u = new User();
-		u.setUserId(1);
+		u.setUserId((long) 1);
 		u.setEmail("postman@gcit.com");
 		u.setActive(true);
 		u.setUsername("manWhoPost");
@@ -66,7 +66,7 @@ public class UserControllerTest {
 	@Test
 	public void get_one_user_return_ok() throws Exception {
 		User u = new User();
-		u.setUserId(1);
+		u.setUserId((long) 1);
 		u.setEmail("postman@gcit.com");
 		u.setActive(true);
 		u.setUsername("manWhoPost");
@@ -86,7 +86,7 @@ public class UserControllerTest {
 	@Test
 	public void create_user_return_created() throws Exception {
 		User u = new User();
-		u.setUserId(1);
+		u.setUserId((long) 1);
 		u.setEmail("postman@gcit.com");
 		u.setActive(true);
 		u.setUsername("manWhoPost");
@@ -103,7 +103,7 @@ public class UserControllerTest {
 	@Test
 	public void update_user_return_accepted() throws Exception{
 		User u = new User();
-		u.setUserId(1);
+		u.setUserId((long) 1);
 		u.setEmail("postman@gcit.com");
 		u.setActive(true);
 		u.setUsername("manWhoPost");

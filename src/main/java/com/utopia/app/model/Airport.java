@@ -34,7 +34,7 @@ public class Airport {
         return airportId;
     }
 
-    public void setAirportId(long airportId) {
+    public void setAirportId(Long airportId) {
         this.airportId = airportId;
     }
 

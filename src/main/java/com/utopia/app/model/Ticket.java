@@ -48,7 +48,7 @@ public class Ticket {
         return ticketId;
     }
 
-    public void setTicketId(long ticketId) {
+    public void setTicketId(Long ticketId) {
         this.ticketId = ticketId;
     }
 

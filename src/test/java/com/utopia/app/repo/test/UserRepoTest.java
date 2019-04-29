@@ -28,7 +28,7 @@ public class UserRepoTest {
 	@Test
 	public void it_should_save_user() {
 		User u = new User();
-		u.setUserId(1);
+		u.setUserId((long) 1);
 		u.setEmail("abc@gmail.com");
 		u.setUsername("Daniel");
 		u = entityManager.persistAndFlush(u);

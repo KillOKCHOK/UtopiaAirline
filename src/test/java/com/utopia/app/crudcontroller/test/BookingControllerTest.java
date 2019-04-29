@@ -45,7 +45,7 @@ public class BookingControllerTest {
 	@Test
 	public void get_list_of_bookings_return_ok() throws Exception {
 		Booking b = new Booking();
-		b.setBookingId(1);
+		b.setBookingId((long)1);
 		b.setConfirmationCode("abcde12345fghij67890");
 		b.setOrderSubmit(false);
 		List<Booking> bookings = new ArrayList<>();
@@ -63,7 +63,7 @@ public class BookingControllerTest {
 	@Test
 	public void get_one_booking_return_ok() throws Exception {
 		Booking b = new Booking();
-		b.setBookingId(1);
+		b.setBookingId((long)1);
 		b.setConfirmationCode("abcde12345fghij67890");
 		b.setOrderSubmit(false);
 		
@@ -78,15 +78,15 @@ public class BookingControllerTest {
 	@Test
 	public void create_booking_return_created() throws Exception {
 		Booking b = new Booking();
-		b.setBookingId(1);
+		b.setBookingId((long)1);
 		b.setConfirmationCode("abcde12345fghij67890");
 		b.setOrderSubmit(false);
 		b.setCreateDate(new Date());
 		User u1 = new User();
-		u1.setUserId(1);
+		u1.setUserId((long)1);
 		u1.setUsername("Jason");
 		User u2 = new User();
-		u2.setUserId(2);
+		u2.setUserId((long)2);
 		u2.setUsername("Postman");
 		b.setCreateUser(u1);
 		b.setUser(u2);
@@ -101,15 +101,15 @@ public class BookingControllerTest {
 	@Test
 	public void update_booking_return_accepted() throws Exception{
 		Booking b = new Booking();
-		b.setBookingId(1);
+		b.setBookingId((long)1);
 		b.setConfirmationCode("abcde12345fghij67890");
 		b.setOrderSubmit(true);
 		b.setCreateDate(new Date());
 		User u1 = new User();
-		u1.setUserId(1);
+		u1.setUserId((long)1);
 		u1.setUsername("Jason1");
 		User u2 = new User();
-		u2.setUserId(2);
+		u2.setUserId((long)2);
 		u2.setUsername("Postman1");
 		b.setCreateUser(u1);
 		b.setUser(u2);

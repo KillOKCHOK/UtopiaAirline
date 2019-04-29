@@ -24,7 +24,7 @@ import com.utopia.app.src.RandomString;
 
 @Service
 @Transactional
-public class TravelerService {
+public class EmployeeService {
 
 	@Autowired
 	private IAirportDao airportDao;
@@ -39,6 +39,33 @@ public class TravelerService {
 	@Autowired
 	private IPaymentDao paymentDao;
 
+	public User getEmployee(Long employeeId) {
+		try {
+			return userDao.getOne(employeeId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public User updateEmployee(User employee) {
+		try {
+			return userDao.save(employee);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<Booking> getBookings(Long employeeId) {
+		try {
+			return bookingDao.getBookingByEmployee(employeeId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public List<Airport> getAirportList(String name) {
 		String serchName = "%" + name + "%";
 		try {
@@ -72,7 +99,7 @@ public class TravelerService {
 	}
 	
 	@Transactional
-	public Booking confirmBookingReserv(List<User> users, Payment payment, Booking booking, List<Flight> flights) {
+	public Booking confirmBookingReserv(List<User> users, Payment payment, Booking booking, List<Flight> flights, Long employeeId) {
 		try {
 			
 			// Add booking & its user
@@ -89,8 +116,10 @@ public class TravelerService {
 				booking.setUser(user);
 			}
 			
-			//// set user to creater
-			booking.setCreateUser(user);
+			//// set employee to creator
+			User employee = new User();
+			employee.setUserId(employeeId);
+			booking.setCreateUser(employee);
 			
 			//// generate booking confirmationNum
 			RandomString rString = new RandomString();
@@ -144,7 +173,7 @@ public class TravelerService {
 	}
 	
 	@Transactional
-	public Booking changeBookingReserv(Booking booking, List<Flight> flights) {
+	public Booking changeBookingReserv(Booking booking, List<Flight> flights, Long employeeId) {
 		try {
 			// update booking user info
 			userDao.save(booking.getUser());
@@ -153,9 +182,12 @@ public class TravelerService {
 			RandomString rString = new RandomString();
 			String confirmationNum = rString.nextString();
 			Date date = new Date();
+			
+			User employee = new User();
+			employee.setUserId(employeeId);
 
 			booking.setConfirmationCode(confirmationNum);
-			booking.setUpdateUser(booking.getUser());
+			booking.setUpdateUser(employee);
 			booking.setUpdateDate(date);
 			bookingDao.save(booking);
 
@@ -193,7 +225,7 @@ public class TravelerService {
 	}
 	
 	@Transactional
-	public void cancelBooking(Long bookingId) {
+	public void cancelBooking(Long bookingId, Long employeeId) {
 		try {
 			
 			//add flight capacity back
@@ -210,11 +242,12 @@ public class TravelerService {
 			
 			// update booking status(orderSubmit) to false
 			Date date = new Date();
+			User employee = userDao.getOne(employeeId);
 			
 			Booking booking = bookingDao.getOne(bookingId);
 			booking.setOrderSubmit(false);
 			booking.setUpdateDate(date);
-			booking.setUpdateUser(booking.getUser());
+			booking.setUpdateUser(employee);
 			bookingDao.save(booking);
 			
 			// update payment status(payment_status) to false

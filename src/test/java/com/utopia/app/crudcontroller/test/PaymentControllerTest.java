@@ -43,7 +43,7 @@ public class PaymentControllerTest {
 	@Test
 	public void get_list_of_payments_return_ok() throws Exception {
 		Payment p = new Payment();
-		p.setPaymentId(1);
+		p.setPaymentId((long) 1);
 		p.setPaymentStatus(true);
 		List<Payment> payments = new ArrayList<>();
 		payments.add(p);
@@ -59,7 +59,7 @@ public class PaymentControllerTest {
 	@Test
 	public void get_one_payment_return_ok() throws Exception {
 		Payment p = new Payment();
-		p.setPaymentId(1);
+		p.setPaymentId((long) 1);
 		p.setPaymentStatus(true);
 		
 		when(service.getPaymentById(1)).thenReturn(p);
@@ -72,7 +72,7 @@ public class PaymentControllerTest {
 	@Test
 	public void create_payment_return_created() throws Exception {
 		Payment p = new Payment();
-		p.setPaymentId(1);
+		p.setPaymentId((long) 1);
 		p.setPaymentStatus(true);
 		
 		mvc.perform(post("/adm/payment")
@@ -85,7 +85,7 @@ public class PaymentControllerTest {
 	@Test
 	public void update_payment_return_accepted() throws Exception{
 		Payment p = new Payment();
-		p.setPaymentId(1);
+		p.setPaymentId((long) 1);
 		p.setPaymentStatus(true);
 		
 		mvc.perform(put("/adm/payment")

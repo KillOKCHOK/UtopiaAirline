@@ -44,7 +44,7 @@ public class AirportControllerTest {
 	@Test
 	public void get_list_of_airports_return_ok() throws Exception {
 		Airport iad = new Airport();
-		iad.setAirportId(1);
+		iad.setAirportId((long)1);
 		iad.setAirportCode("IAD");
 		iad.setAirportName("Dulles");
 		List<Airport> allAirport = new ArrayList<>();
@@ -64,7 +64,7 @@ public class AirportControllerTest {
 	@Test
 	public void get_one_airport_return_ok() throws Exception {
 		Airport iad = new Airport();
-		iad.setAirportId(1);
+		iad.setAirportId((long)1);
 		iad.setAirportCode("IAD");
 		iad.setAirportName("Dulles");
 				
@@ -83,7 +83,7 @@ public class AirportControllerTest {
 		Airport iad = new Airport();
 		iad.setAirportCode("IAD");
 		iad.setAirportName("Dulles");
-		iad.setAirportId(1);
+		iad.setAirportId((long)1);
 		City c = new City();
 		c.setCityName("DC");
 		c.setCountry("USA");
@@ -102,7 +102,7 @@ public class AirportControllerTest {
 		Airport iad = new Airport();
 		iad.setAirportCode("IAD");
 		iad.setAirportName("Dulles");
-		iad.setAirportId(1);
+		iad.setAirportId((long)1);
 		City c = new City();
 		c.setCityName("DC");
 		c.setCountry("USA");

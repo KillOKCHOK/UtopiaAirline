@@ -32,7 +32,8 @@ public class CityRepoTest {
 		c.setCountry("USA");
 		c = entityManager.persistAndFlush(c);
 		
-		assertThat(crepo.findById(c.getCityId()).get()).isEqualTo(c);
+		City cTest = crepo.findById(c.getCityId()).get();
+		assertThat(cTest).isEqualTo(c);
 	}
 	
 	@Test
@@ -42,6 +43,7 @@ public class CityRepoTest {
 		c.setCountry("USA");
 		c = entityManager.persistAndFlush(c);
 		
-		assertThat(crepo.findById(c.getCityId()).get()).isNotNull();
+		City cTest = crepo.findById(c.getCityId()).get();
+		assertThat(cTest).isNotNull();
 	}
 }

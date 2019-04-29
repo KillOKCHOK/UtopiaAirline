@@ -2,6 +2,8 @@ package com.utopia.app.repo.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,8 @@ public class AirportRepoTest {
 		a.setAirportCode("IAD");
 		a = entityManager.persistAndFlush(a);
 
-		assertThat(arepo.findById(a.getAirportId()).get()).isEqualTo(a);
+		Airport aTest = arepo.findById(a.getAirportId()).get();
+		assertThat(aTest).isEqualTo(a);
 	}
 	
 	@Test
@@ -47,6 +50,8 @@ public class AirportRepoTest {
 		a.setCity(c);
 		a=entityManager.persistAndFlush(a);
 		
-		assertThat(arepo.getAirportListByName("Washington").size()).isEqualTo(1);
+		List<Airport> airports = arepo.getAirportListByName("Washington");
+		
+		assertThat(airports.size()).isEqualTo(1);
 	}
 }

@@ -32,7 +32,8 @@ public class BookingRepoTest {
 		b.setOrderSubmit(false);
 		b = entityManager.persistAndFlush(b);
 
-		assertThat(brepo.findById(b.getBookingId()).get()).isEqualTo(b);
+		Booking bTest = brepo.findById(b.getBookingId()).get();
+		assertThat(bTest).isEqualTo(b);
 	}
 	
 	@Test
@@ -42,7 +43,8 @@ public class BookingRepoTest {
 		b.setOrderSubmit(false);
 		b = entityManager.persistAndFlush(b);
 
-		assertThat(brepo.findById(b.getBookingId()).get().getConfirmationCode()).isEqualTo("abcde12345fghij67890");
+		Booking bTest = brepo.findById(b.getBookingId()).get();
+		assertThat(bTest.getConfirmationCode()).isEqualTo("abcde12345fghij67890");
 	}
 	
 	@Test
@@ -52,6 +54,7 @@ public class BookingRepoTest {
 		b.setOrderSubmit(false);
 		b = entityManager.persistAndFlush(b);
 
-		assertThat(brepo.findById(b.getBookingId()).get().getOrderSubmit()).isEqualTo(false);
+		Booking bTest = brepo.findById(b.getBookingId()).get();
+		assertThat(bTest.getOrderSubmit()).isEqualTo(false);
 	}
 }

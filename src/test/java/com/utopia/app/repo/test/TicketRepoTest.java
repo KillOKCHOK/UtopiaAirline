@@ -30,7 +30,8 @@ public class TicketRepoTest {
 		Ticket t = new Ticket();
 		t = entityManager.persistAndFlush(t);
 		
-		assertThat(trepo.findById(t.getTicketId()).get()).isEqualTo(t);
+		Ticket tTest = trepo.findById(t.getTicketId()).get();
+		assertThat(tTest).isEqualTo(t);
 	}
 	
 	@Test
@@ -38,6 +39,7 @@ public class TicketRepoTest {
 		Ticket t = new Ticket();
 		t = entityManager.persistAndFlush(t);
 		
-		assertThat(trepo.findById(t.getTicketId()).get()).isNotNull();
+		Ticket tTest = trepo.findById(t.getTicketId()).get();
+		assertThat(tTest).isNotNull();
 	}
 }

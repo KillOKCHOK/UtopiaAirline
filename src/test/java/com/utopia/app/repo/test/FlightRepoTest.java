@@ -46,8 +46,9 @@ public class FlightRepoTest {
 		f.setCapacity(200);
 		f.setDepDateTime(new Date());
 		f = entityManager.persistAndFlush(f);
-		
-		assertThat(frepo.findById(f.getFlightId()).get()).isEqualTo(f);
+
+		Flight fTest = frepo.findById(f.getFlightId()).get();
+		assertThat(fTest).isEqualTo(f);
 	}
 	
 	@Test 

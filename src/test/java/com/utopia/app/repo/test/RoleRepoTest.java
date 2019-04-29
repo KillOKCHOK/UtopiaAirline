@@ -31,7 +31,8 @@ public class RoleRepoTest {
 		r.setRoleName("Agent");
 		r = entityManager.persistAndFlush(r);
 		
-		assertThat(rrepo.findById(r.getRoleId()).get()).isNotNull();
+		Role rTest = rrepo.findById(r.getRoleId()).get();
+		assertThat(rTest).isNotNull();
 	}
 	
 	@Test
@@ -40,6 +41,7 @@ public class RoleRepoTest {
 		r.setRoleName("Agent");
 		r = entityManager.persistAndFlush(r);
 		
-		assertThat(rrepo.findById(r.getRoleId()).get()).isEqualTo(r);
+		Role rTest = rrepo.findById(r.getRoleId()).get();
+		assertThat(rTest).isEqualTo(r);
 	}
 }

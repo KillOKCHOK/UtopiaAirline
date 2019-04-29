@@ -67,7 +67,7 @@ public class CityControllerTest {
 		
 		when(service.getCityById(1)).thenReturn(c);
 		
-		mvc.perform(get("/adm/city/1").accept(MediaType.APPLICATION_JSON))
+		mvc.perform(get("/adm/cities/1").accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$.cityName",is("Seattle")))
 		.andExpect(jsonPath("$.country",is("USA")));

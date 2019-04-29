@@ -47,6 +47,6 @@ public class AirportRepoTest {
 		a.setCity(c);
 		a=entityManager.persistAndFlush(a);
 		
-		assertThat(arepo.getAirportListByName("Washington").size()).isEqualTo(2);
+		assertThat(arepo.getAirportListByName("Washington").size()).isEqualTo(1);
 	}
 }

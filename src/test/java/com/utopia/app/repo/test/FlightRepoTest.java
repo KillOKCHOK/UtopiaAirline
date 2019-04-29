@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -76,7 +77,7 @@ public class FlightRepoTest {
 		
 		long id1 = a.getAirportId();
 		long id2 = a2.getAirportId();
-				
-		assertThat(frepo.getFlightList(dep, id1, id2).size()).isEqualTo(1);
+		List<Flight> flights = frepo.getFlightList(dep, id1, id2);
+		assertThat(flights.size()).isEqualTo(1);
 	}
 }

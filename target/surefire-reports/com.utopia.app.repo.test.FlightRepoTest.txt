@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.utopia.app.repo.test.FlightRepoTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.573 s <<< FAILURE! - in com.utopia.app.repo.test.FlightRepoTest
+it_should_get_list_of_flights(com.utopia.app.repo.test.FlightRepoTest)  Time elapsed: 0.307 s  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<[1]> but was:<[0]>
+	at com.utopia.app.repo.test.FlightRepoTest.it_should_get_list_of_flights(FlightRepoTest.java:80)
+

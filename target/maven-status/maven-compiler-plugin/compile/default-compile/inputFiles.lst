@@ -5,12 +5,15 @@
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/idao/ICityDao.java
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/model/Payment.java
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/service/TicketService.java
+/Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/service/EmployeeService.java
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/curdcontroller/UserController.java
+/Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/controller/TravelerController.java
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/curdcontroller/BookingController.java
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/model/Role.java
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/idao/ITicketDao.java
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/idao/IFlightDao.java
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/model/User.java
+/Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/controller/EmployeeController.java
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/service/FlightService.java
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/UtopiaProjectApplication.java
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/curdcontroller/TicketController.java
@@ -25,7 +28,6 @@
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/idao/IBookingDao.java
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/idao/IUserDao.java
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/model/City.java
-/Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/controller/travelerController.java
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/service/AirportService.java
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/idao/IAirportDao.java
 /Users/Derek/Documents/workspace/UtopiaAirline/src/main/java/com/utopia/app/curdcontroller/CityController.java

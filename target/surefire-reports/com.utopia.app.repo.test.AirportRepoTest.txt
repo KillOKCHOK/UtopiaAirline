@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.utopia.app.repo.test.AirportRepoTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.344 s <<< FAILURE! - in com.utopia.app.repo.test.AirportRepoTest
+it_should_find_airport_byAirportName(com.utopia.app.repo.test.AirportRepoTest)  Time elapsed: 0.193 s  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<[2]> but was:<[1]>
+	at com.utopia.app.repo.test.AirportRepoTest.it_should_find_airport_byAirportName(AirportRepoTest.java:50)
+

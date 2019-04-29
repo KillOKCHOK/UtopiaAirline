@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: com.utopia.app.repo.test.UserRepoTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.112 s <<< FAILURE! - in com.utopia.app.repo.test.UserRepoTest
+it_should_save_user(com.utopia.app.repo.test.UserRepoTest)  Time elapsed: 0.101 s  <<< ERROR!
+javax.persistence.PersistenceException: org.hibernate.PersistentObjectException: detached entity passed to persist: com.utopia.app.model.User
+	at com.utopia.app.repo.test.UserRepoTest.it_should_save_user(UserRepoTest.java:34)
+Caused by: org.hibernate.PersistentObjectException: detached entity passed to persist: com.utopia.app.model.User
+	at com.utopia.app.repo.test.UserRepoTest.it_should_save_user(UserRepoTest.java:34)
+

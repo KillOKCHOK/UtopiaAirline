@@ -68,9 +68,9 @@ public class TravelerController {
 		try {
 			Date date = new SimpleDateFormat("yyyy-MM-dd").parse(sdate);
 			flights = travelerServ.getFightList(date, depAirportId, arrAirportId);
-			System.out.println(flights);
+//			System.out.println(flights);
 		}catch(ParseException p){
-			logger.warn("Unable to parse the Date: "+ sdate+ "\nIP: "+request.getLocalAddr(), p.getCause());
+			logger.error("Unable to parse the Date: "+ sdate+ "\nIP: "+request.getLocalAddr()+ p.getMessage());
 			return new ResponseEntity<List<Flight>>(flights, HttpStatus.BAD_REQUEST);
 		}catch(Exception e) {
 			logger.error("Unable to fetch flights from DB on date: "+ sdate+" Departure AirportId: "+ depAirportId+" Arrival AirportId: "+ arrAirportId+"\nIP: "+request.getLocalAddr(), e.getCause());

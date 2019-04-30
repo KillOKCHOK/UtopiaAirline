@@ -23,17 +23,17 @@ public class UserRepoTest {
 	private TestEntityManager entityManager;
 
 	@Autowired
-	private IUserDao urepo;
+	private IUserDao userDao;
 	
 	@Test
-	public void it_should_save_user() {
-		User u = new User();
-		u.setEmail("abc@gmail.com");
-		u.setUsername("Daniel");
-		u = entityManager.persistAndFlush(u);
+	public void itShouldSaveUser() {
+		User user = new User();
+		user.setEmail("abc@gmail.com");
+		user.setUsername("Daniel");
+		user = entityManager.persistAndFlush(user);
 		
-		User uTest = urepo.findById(u.getUserId()).get();
-		assertThat(uTest).isEqualTo(u);
+		User expected = userDao.findById(user.getUserId()).get();
+		assertThat(expected).isEqualTo(user);
 	}
 	
 	

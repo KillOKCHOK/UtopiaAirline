@@ -42,11 +42,11 @@ public class TicketControllerTest {
     private ObjectMapper objectMapper;
 	
 	@Test
-	public void get_list_of_tickets_return_ok() throws Exception {
-		Ticket t = new Ticket();
-		t.setTicketId((long) 1);
+	public void getListOfTicketsReturnOk() throws Exception {
+		Ticket ticket = new Ticket();
+		ticket.setTicketId((long) 1);
 		List<Ticket> tickets = new ArrayList<>();
-		tickets.add(t);
+		tickets.add(ticket);
 		
 		when(service.getTicketAll()).thenReturn(tickets);
 		
@@ -56,46 +56,46 @@ public class TicketControllerTest {
 	}
 	
 	@Test
-	public void get_one_ticket_return_ok() throws Exception {
-		Ticket t = new Ticket();
-		t.setTicketId((long) 1);
+	public void getOneTicketReturnOk() throws Exception {
+		Ticket ticket = new Ticket();
+		ticket.setTicketId((long) 1);
 		
-		when(service.getTicketById(1)).thenReturn(t);
+		when(service.getTicketById(1)).thenReturn(ticket);
 		
 		mvc.perform(get("/adm/ticket/1").accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk());
 	}
 	
 	@Test
-	public void create_ticket_return_created() throws Exception {
-		Ticket t = new Ticket();
-		t.setTicketId((long) 1);
-		t.setBooking(new Booking());
-		t.setUser(new User());
+	public void createTicketReturnCreated() throws Exception {
+		Ticket ticket = new Ticket();
+		ticket.setTicketId((long) 1);
+		ticket.setBooking(new Booking());
+		ticket.setUser(new User());
 		
 		mvc.perform(post("/adm/ticket")
 				.accept(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsBytes(t))				
+				.content(objectMapper.writeValueAsBytes(ticket))				
 			    .contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isCreated());
 	}
 	
 	@Test
-	public void update_ticket_return_accepted() throws Exception{
-		Ticket t = new Ticket();
-		t.setTicketId((long) 1);
-		t.setBooking(new Booking());
-		t.setUser(new User());
+	public void updateTicketReturnAccepted() throws Exception{
+		Ticket ticket = new Ticket();
+		ticket.setTicketId((long) 1);
+		ticket.setBooking(new Booking());
+		ticket.setUser(new User());
 		
 		mvc.perform(put("/adm/ticket")
 				.accept(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsBytes(t))				
+				.content(objectMapper.writeValueAsBytes(ticket))				
 			    .contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isAccepted());
 	}
 	
 	@Test
-	public void delete_ticket_return_accepted() throws Exception {
+	public void deleteTicketReturnAccepted() throws Exception {
 		mvc.perform(delete("/adm/ticket/1")
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))

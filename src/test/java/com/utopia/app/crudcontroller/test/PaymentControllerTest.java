@@ -41,56 +41,56 @@ public class PaymentControllerTest {
     private ObjectMapper objectMapper;
 	
 	@Test
-	public void get_list_of_payments_return_ok() throws Exception {
-		Payment p = new Payment();
-		p.setPaymentId((long) 1);
-		p.setPaymentStatus(true);
+	public void getListOfPaymentsReturnOk() throws Exception {
+		Payment payment = new Payment();
+		payment.setPaymentId((long) 1);
+		payment.setPaymentStatus(true);
 		List<Payment> payments = new ArrayList<>();
-		payments.add(p);
+		payments.add(payment);
 		
 		when(service.getPaymentAll()).thenReturn(payments);
 		
 		mvc.perform(get("/adm/payments").accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$",hasSize(1)))
-		.andExpect(jsonPath("$[0].paymentStatus",is(true)));
+		.andExpect(jsonPath("$[0].paymentStatus",is(payment.getPaymentStatus())));
 	}
 	
 	@Test
-	public void get_one_payment_return_ok() throws Exception {
-		Payment p = new Payment();
-		p.setPaymentId((long) 1);
-		p.setPaymentStatus(true);
+	public void getOnePaymentReturnOk() throws Exception {
+		Payment payment = new Payment();
+		payment.setPaymentId((long) 1);
+		payment.setPaymentStatus(true);
 		
-		when(service.getPaymentById(1)).thenReturn(p);
+		when(service.getPaymentById(1)).thenReturn(payment);
 		
 		mvc.perform(get("/adm/payment/1").accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
-		.andExpect(jsonPath("$.paymentStatus",is(true)));
+		.andExpect(jsonPath("$.paymentStatus",is(payment.getPaymentStatus())));
 	}
 	
 	@Test
-	public void create_payment_return_created() throws Exception {
-		Payment p = new Payment();
-		p.setPaymentId((long) 1);
-		p.setPaymentStatus(true);
+	public void createPaymentReturnCreated() throws Exception {
+		Payment payment = new Payment();
+		payment.setPaymentId((long) 1);
+		payment.setPaymentStatus(true);
 		
 		mvc.perform(post("/adm/payment")
 				.accept(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsBytes(p))				
+				.content(objectMapper.writeValueAsBytes(payment))				
 			    .contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isCreated());
 	}
 	
 	@Test
 	public void update_payment_return_accepted() throws Exception{
-		Payment p = new Payment();
-		p.setPaymentId((long) 1);
-		p.setPaymentStatus(true);
+		Payment payment = new Payment();
+		payment.setPaymentId((long) 1);
+		payment.setPaymentStatus(true);
 		
 		mvc.perform(put("/adm/payment")
 				.accept(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsBytes(p))				
+				.content(objectMapper.writeValueAsBytes(payment))				
 			    .contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isAccepted());
 	}

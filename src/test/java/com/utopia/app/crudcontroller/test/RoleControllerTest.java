@@ -41,61 +41,61 @@ public class RoleControllerTest {
     private ObjectMapper objectMapper;
 	
 	@Test
-	public void get_list_of_roles_return_ok() throws Exception {
-		Role r = new Role();
-		r.setRoleId((long) 1);
-		r.setRoleName("Agent");
+	public void getListOfRolesReturnOk() throws Exception {
+		Role role = new Role();
+		role.setRoleId((long) 1);
+		role.setRoleName("Agent");
 		List<Role> roles = new ArrayList<>();
-		roles.add(r);
+		roles.add(role);
 		
 		when(service.getRoleAll()).thenReturn(roles);
 		
 		mvc.perform(get("/adm/roles").accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$",hasSize(1)))
-		.andExpect(jsonPath("$[0].roleName",is("Agent")));
+		.andExpect(jsonPath("$[0].roleName",is(role.getRoleName())));
 	}
 	
 	@Test
-	public void get_one_role_return_ok() throws Exception {
-		Role r = new Role();
-		r.setRoleId((long) 1);
-		r.setRoleName("Agent");
+	public void getOneRoleReturnOk() throws Exception {
+		Role role = new Role();
+		role.setRoleId((long) 1);
+		role.setRoleName("Agent");
 		
-		when(service.getRoleById(1)).thenReturn(r);
+		when(service.getRoleById(1)).thenReturn(role);
 		
 		mvc.perform(get("/adm/role/1").accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
-		.andExpect(jsonPath("$.roleName",is("Agent")));
+		.andExpect(jsonPath("$.roleName",is(role.getRoleName())));
 	}
 	
 	@Test
-	public void create_role_return_created() throws Exception {
-		Role r = new Role();
-		r.setRoleName("Agent");
+	public void createRoleReturnCreated() throws Exception {
+		Role role = new Role();
+		role.setRoleName("Agent");
 		
 		mvc.perform(post("/adm/role")
 				.accept(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsBytes(r))				
+				.content(objectMapper.writeValueAsBytes(role))				
 			    .contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isCreated());
 	}
 	
 	@Test
-	public void update_role_return_accepted() throws Exception{
-		Role r = new Role();
-		r.setRoleId((long) 1);
-		r.setRoleName("Agent");
+	public void updateRoleReturnAccepted() throws Exception{
+		Role role = new Role();
+		role.setRoleId((long) 1);
+		role.setRoleName("Agent");
 		
 		mvc.perform(put("/adm/role")
 				.accept(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsBytes(r))				
+				.content(objectMapper.writeValueAsBytes(role))				
 			    .contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isAccepted());
 	}
 	
 	@Test
-	public void delete_role_return_accepted() throws Exception {
+	public void deleteRoleReturnAccepted() throws Exception {
 		mvc.perform(delete("/adm/role/1")
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))

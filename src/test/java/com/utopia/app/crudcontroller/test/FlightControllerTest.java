@@ -43,16 +43,16 @@ public class FlightControllerTest {
     private ObjectMapper objectMapper;
 
 	@Test
-	public void get_list_of_flights_return_ok() throws Exception {
-		Flight f = new Flight();
-		f.setFlightId((long) 1);
-		f.setPrice((float)280);
-		f.setDepDateTime(new Date());
-		Airport a = new Airport();
-		a.setAirportId((long) 1);
-		a.setAirportName("DCA");
+	public void getListOfFlightsReturnOk() throws Exception {
+		Flight flight = new Flight();
+		flight.setFlightId((long) 1);
+		flight.setCapacity(200);
+		flight.setDepDateTime(new Date());
+		Airport airport = new Airport();
+		airport.setAirportId((long) 1);
+		airport.setAirportName("DCA");
 		List<Flight> allFlights = new ArrayList<>();
-		allFlights.add(f);
+		allFlights.add(flight);
 
 		when(service.getFlightAll()).thenReturn(allFlights);
 		
@@ -60,63 +60,63 @@ public class FlightControllerTest {
 		mvc.perform(get("/adm/flights").accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$",hasSize(1)))
-		.andExpect(jsonPath("$[0].price",is(280.0)));
+		.andExpect(jsonPath("$[0].capacity",is(flight.getCapacity())));
 		
 	}
 	
 	@Test
-	public void get_one_flight_return_ok() throws Exception {
-		Flight f = new Flight();
-		f.setFlightId((long) 1);
-		f.setPrice((float)280);
+	public void getOneFlightReturnOk() throws Exception {
+		Flight flight = new Flight();
+		flight.setFlightId((long) 1);
+		flight.setCapacity(200);
 		Airport a = new Airport();
 		a.setAirportId((long) 1);
 		a.setAirportName("DCA");
 				
-		when(service.getFlightById(1)).thenReturn(f);
+		when(service.getFlightById(1)).thenReturn(flight);
 		
 		mvc.perform(get("/adm/flight/1").accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
-		.andExpect(jsonPath("$.price",is(280.0)));
+		.andExpect(jsonPath("$.capacity",is(flight.getCapacity())));
 		
 	}
 	
 	@Test 
-	public void create_new_flight_return_created() throws Exception {
-		Flight f = new Flight();
-		f.setFlightId((long)1);
-		f.setPrice((float)280);
+	public void createNewFlightReturnCreated() throws Exception {
+		Flight flight = new Flight();
+		flight.setFlightId((long)1);
+		flight.setPrice((float)280);
 		Airport a = new Airport();
 		a.setAirportId((long)1);
 		a.setAirportName("DCA");
 		
 		mvc.perform(post("/adm/flight")
 				.accept(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsBytes(f))				
+				.content(objectMapper.writeValueAsBytes(flight))				
 			    .contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isCreated());
 		
 	}
 	
 	@Test
-	public void update_flight_return_accepted() throws Exception {
-		Flight f = new Flight();
-		f.setFlightId((long)1);
-		f.setPrice((float)280);
-		f.setDepDateTime(new Date());
+	public void updateFlightReturnAccepted() throws Exception {
+		Flight flight = new Flight();
+		flight.setFlightId((long)1);
+		flight.setPrice((float)280);
+		flight.setDepDateTime(new Date());
 		Airport a = new Airport();
 		a.setAirportId((long)1);
 		a.setAirportName("DCA");
 		
 		mvc.perform(put("/adm/flight")
 				.accept(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsBytes(f))				
+				.content(objectMapper.writeValueAsBytes(flight))				
 			    .contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isAccepted());
 	}
 	
 	@Test
-	public void delete_flight_return_accepted() throws Exception {
+	public void deleteFlightReturnAccepted() throws Exception {
 		mvc.perform(delete("/adm/flight/1")
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))

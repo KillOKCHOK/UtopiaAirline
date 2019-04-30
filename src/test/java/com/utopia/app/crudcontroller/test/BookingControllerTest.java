@@ -43,86 +43,86 @@ public class BookingControllerTest {
     private ObjectMapper objectMapper;
 	
 	@Test
-	public void get_list_of_bookings_return_ok() throws Exception {
-		Booking b = new Booking();
-		b.setBookingId((long)1);
-		b.setConfirmationCode("abcde12345fghij67890");
-		b.setOrderSubmit(false);
+	public void getListOfBookingsReturnOk() throws Exception {
+		Booking booking = new Booking();
+		booking.setBookingId((long)1);
+		booking.setConfirmationCode("abcde12345fghij67890");
+		booking.setOrderSubmit(false);
 		List<Booking> bookings = new ArrayList<>();
-		bookings.add(b);
+		bookings.add(booking);
 		
 		when(service.getBookingAll()).thenReturn(bookings);
 		
 		mvc.perform(get("/adm/bookings").accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$",hasSize(1)))
-		.andExpect(jsonPath("$[0].confirmationCode",is("abcde12345fghij67890")))
-		.andExpect(jsonPath("$[0].orderSubmit",is(false)));
+		.andExpect(jsonPath("$[0].confirmationCode",is(booking.getConfirmationCode())))
+		.andExpect(jsonPath("$[0].orderSubmit",is(booking.getOrderSubmit())));
 	}
 	
 	@Test
-	public void get_one_booking_return_ok() throws Exception {
-		Booking b = new Booking();
-		b.setBookingId((long)1);
-		b.setConfirmationCode("abcde12345fghij67890");
-		b.setOrderSubmit(false);
+	public void getOneBookingReturnOk() throws Exception {
+		Booking booking = new Booking();
+		booking.setBookingId((long)1);
+		booking.setConfirmationCode("abcde12345fghij67890");
+		booking.setOrderSubmit(false);
 		
-		when(service.getBookingById(1)).thenReturn(b);
+		when(service.getBookingById(1)).thenReturn(booking);
 		
 		mvc.perform(get("/adm/booking/1").accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
-		.andExpect(jsonPath("$.confirmationCode",is("abcde12345fghij67890")))
-		.andExpect(jsonPath("$.orderSubmit",is(false)));
+		.andExpect(jsonPath("$.confirmationCode",is(booking.getConfirmationCode())))
+		.andExpect(jsonPath("$.orderSubmit",is(booking.getOrderSubmit())));
 	}
 	
 	@Test
-	public void create_booking_return_created() throws Exception {
-		Booking b = new Booking();
-		b.setBookingId((long)1);
-		b.setConfirmationCode("abcde12345fghij67890");
-		b.setOrderSubmit(false);
-		b.setCreateDate(new Date());
-		User u1 = new User();
-		u1.setUserId((long)1);
-		u1.setUsername("Jason");
-		User u2 = new User();
-		u2.setUserId((long)2);
-		u2.setUsername("Postman");
-		b.setCreateUser(u1);
-		b.setUser(u2);
+	public void createBookingReturnCreated() throws Exception {
+		Booking booking = new Booking();
+		booking.setBookingId((long)1);
+		booking.setConfirmationCode("abcde12345fghij67890");
+		booking.setOrderSubmit(false);
+		booking.setCreateDate(new Date());
+		User user1 = new User();
+		user1.setUserId((long)1);
+		user1.setUsername("Jason");
+		User user2 = new User();
+		user2.setUserId((long)2);
+		user2.setUsername("Postman");
+		booking.setCreateUser(user1);
+		booking.setUser(user2);
 		
 		mvc.perform(post("/adm/booking")
 				.accept(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsBytes(b))				
+				.content(objectMapper.writeValueAsBytes(booking))				
 			    .contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isCreated());
 	}
 	
 	@Test
-	public void update_booking_return_accepted() throws Exception{
-		Booking b = new Booking();
-		b.setBookingId((long)1);
-		b.setConfirmationCode("abcde12345fghij67890");
-		b.setOrderSubmit(true);
-		b.setCreateDate(new Date());
-		User u1 = new User();
-		u1.setUserId((long)1);
-		u1.setUsername("Jason1");
-		User u2 = new User();
-		u2.setUserId((long)2);
-		u2.setUsername("Postman1");
-		b.setCreateUser(u1);
-		b.setUser(u2);
+	public void updateBookingReturnAccepted() throws Exception{
+		Booking booking = new Booking();
+		booking.setBookingId((long)1);
+		booking.setConfirmationCode("abcde12345fghij67890");
+		booking.setOrderSubmit(true);
+		booking.setCreateDate(new Date());
+		User user1 = new User();
+		user1.setUserId((long)1);
+		user1.setUsername("Jason1");
+		User user2 = new User();
+		user2.setUserId((long)2);
+		user2.setUsername("Postman1");
+		booking.setCreateUser(user1);
+		booking.setUser(user2);
 		
 		mvc.perform(put("/adm/booking")
 				.accept(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsBytes(b))				
+				.content(objectMapper.writeValueAsBytes(booking))				
 			    .contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isAccepted());
 	}
 	
 	@Test
-	public void delete_booking_return_accepted() throws Exception {
+	public void deleteBookingReturnAccepted() throws Exception {
 		mvc.perform(delete("/adm/booking/1")
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))

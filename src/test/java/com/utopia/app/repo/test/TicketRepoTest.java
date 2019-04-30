@@ -23,23 +23,23 @@ public class TicketRepoTest {
 	private TestEntityManager entityManager;
 
 	@Autowired
-	private ITicketDao trepo;
+	private ITicketDao ticketDao;
 	
 	@Test
-	public void it_should_save_ticket() {
-		Ticket t = new Ticket();
-		t = entityManager.persistAndFlush(t);
+	public void itShouldSaveTicket() {
+		Ticket ticket = new Ticket();
+		ticket = entityManager.persistAndFlush(ticket);
 		
-		Ticket tTest = trepo.findById(t.getTicketId()).get();
-		assertThat(tTest).isEqualTo(t);
+		Ticket expected = ticketDao.findById(ticket.getTicketId()).get();
+		assertThat(expected).isEqualTo(ticket);
 	}
 	
 	@Test
-	public void it_should_not_be_null() {
-		Ticket t = new Ticket();
-		t = entityManager.persistAndFlush(t);
+	public void itShouldNotBeNull() {
+		Ticket ticket = new Ticket();
+		ticket = entityManager.persistAndFlush(ticket);
 		
-		Ticket tTest = trepo.findById(t.getTicketId()).get();
-		assertThat(tTest).isNotNull();
+		Ticket expected = ticketDao.findById(ticket.getTicketId()).get();
+		assertThat(expected).isNotNull();
 	}
 }

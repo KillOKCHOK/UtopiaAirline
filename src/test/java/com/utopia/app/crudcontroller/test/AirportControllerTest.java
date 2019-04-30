@@ -42,13 +42,13 @@ public class AirportControllerTest {
     private ObjectMapper objectMapper;
 
 	@Test
-	public void get_list_of_airports_return_ok() throws Exception {
-		Airport iad = new Airport();
-		iad.setAirportId((long)1);
-		iad.setAirportCode("IAD");
-		iad.setAirportName("Dulles");
+	public void getListOfAirportsReturn_ok() throws Exception {
+		Airport airport = new Airport();
+		airport.setAirportId((long)1);
+		airport.setAirportCode("IAD");
+		airport.setAirportName("Dulles");
 		List<Airport> allAirport = new ArrayList<>();
-		allAirport.add(iad);
+		allAirport.add(airport);
 
 		when(service.getAirportAll()).thenReturn(allAirport);
 		
@@ -56,67 +56,67 @@ public class AirportControllerTest {
 		mvc.perform(get("/adm/airports").accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$",hasSize(1)))
-		.andExpect(jsonPath("$[0].airportName",is("Dulles")))
-		.andExpect(jsonPath("$[0].airportCode",is("IAD")));
+		.andExpect(jsonPath("$[0].airportName",is(airport.getAirportName())))
+		.andExpect(jsonPath("$[0].airportCode",is(airport.getAirportCode())));
 		
 	}
 	
 	@Test
-	public void get_one_airport_return_ok() throws Exception {
-		Airport iad = new Airport();
-		iad.setAirportId((long)1);
-		iad.setAirportCode("IAD");
-		iad.setAirportName("Dulles");
+	public void getOneAirportReturnOk() throws Exception {
+		Airport airport = new Airport();
+		airport.setAirportId((long)1);
+		airport.setAirportCode("IAD");
+		airport.setAirportName("Dulles");
 				
-		when(service.getAirportById(1)).thenReturn(iad);
+		when(service.getAirportById(1)).thenReturn(airport);
 		
 		mvc.perform(get("/adm/airport/1").accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$.airportId",is(1)))
-		.andExpect(jsonPath("$.airportName",is("Dulles")))
-		.andExpect(jsonPath("$.airportCode",is("IAD")));
+		.andExpect(jsonPath("$.airportName",is(airport.getAirportName())))
+		.andExpect(jsonPath("$.airportCode",is(airport.getAirportCode())));
 		
 	}
 	
 	@Test 
-	public void create_new_airport_return_created() throws Exception {
-		Airport iad = new Airport();
-		iad.setAirportCode("IAD");
-		iad.setAirportName("Dulles");
-		iad.setAirportId((long)1);
-		City c = new City();
-		c.setCityName("DC");
-		c.setCountry("USA");
-		iad.setCity(c);
+	public void createNewAirportReturnCreated() throws Exception {
+		Airport airport = new Airport();
+		airport.setAirportCode("IAD");
+		airport.setAirportName("Dulles");
+		airport.setAirportId((long)1);
+		City city = new City();
+		city.setCityName("DC");
+		city.setCountry("USA");
+		airport.setCity(city);
 		
 		mvc.perform(post("/adm/airport")
 				.accept(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsBytes(iad))				
+				.content(objectMapper.writeValueAsBytes(airport))				
 			    .contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isCreated());
 		
 	}
 	
 	@Test
-	public void update_airport_return_accepted() throws Exception {
-		Airport iad = new Airport();
-		iad.setAirportCode("IAD");
-		iad.setAirportName("Dulles");
-		iad.setAirportId((long)1);
-		City c = new City();
-		c.setCityName("DC");
-		c.setCountry("USA");
-		iad.setCity(c);
+	public void updateAirportReturnAccepted() throws Exception {
+		Airport airport = new Airport();
+		airport.setAirportCode("IAD");
+		airport.setAirportName("Dulles");
+		airport.setAirportId((long)1);
+		City city = new City();
+		city.setCityName("DC");
+		city.setCountry("USA");
+		airport.setCity(city);
 		
 		mvc.perform(put("/adm/airport")
 				.accept(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsBytes(iad))				
+				.content(objectMapper.writeValueAsBytes(airport))				
 			    .contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isAccepted());
 	}
 	
 	@Test
-	public void delete_airport_return_accepted() throws Exception {
+	public void deleteAirportReturnAccepted() throws Exception {
 		mvc.perform(delete("/adm/airport/1")
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))

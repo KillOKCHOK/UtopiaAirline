@@ -23,38 +23,38 @@ public class BookingRepoTest {
 	private TestEntityManager entityManager;
 
 	@Autowired
-	private IBookingDao brepo;
+	private IBookingDao bookingDao;
 	
 	@Test
-	public void it_should_save_booking() {
-		Booking b = new Booking();
-		b.setConfirmationCode("abcde12345fghij67890");
-		b.setOrderSubmit(false);
-		b = entityManager.persistAndFlush(b);
+	public void itShouldSaveBooking() {
+		Booking booking = new Booking();
+		booking.setConfirmationCode("abcde12345fghij67890");
+		booking.setOrderSubmit(false);
+		booking = entityManager.persistAndFlush(booking);
 
-		Booking bTest = brepo.findById(b.getBookingId()).get();
-		assertThat(bTest).isEqualTo(b);
+		Booking expected = bookingDao.findById(booking.getBookingId()).get();
+		assertThat(expected).isEqualTo(booking);
 	}
 	
 	@Test
-	public void it_should_get_confirmationCode_of_booking() {
-		Booking b = new Booking();
-		b.setConfirmationCode("abcde12345fghij67890");
-		b.setOrderSubmit(false);
-		b = entityManager.persistAndFlush(b);
+	public void itShouldGetConfirmationCodeOfBooking() {
+		Booking booking = new Booking();
+		booking.setConfirmationCode("abcde12345fghij67890");
+		booking.setOrderSubmit(false);
+		booking = entityManager.persistAndFlush(booking);
 
-		Booking bTest = brepo.findById(b.getBookingId()).get();
-		assertThat(bTest.getConfirmationCode()).isEqualTo("abcde12345fghij67890");
+		Booking expected = bookingDao.findById(booking.getBookingId()).get();
+		assertThat(expected.getConfirmationCode()).isEqualTo("abcde12345fghij67890");
 	}
 	
 	@Test
-	public void it_should_not_submit_order() {
-		Booking b = new Booking();
-		b.setConfirmationCode("abcde12345fghij67890");
-		b.setOrderSubmit(false);
-		b = entityManager.persistAndFlush(b);
+	public void itShouldNotSubmitOrder() {
+		Booking booking = new Booking();
+		booking.setConfirmationCode("abcde12345fghij67890");
+		booking.setOrderSubmit(false);
+		booking = entityManager.persistAndFlush(booking);
 
-		Booking bTest = brepo.findById(b.getBookingId()).get();
-		assertThat(bTest.getOrderSubmit()).isEqualTo(false);
+		Booking expected = bookingDao.findById(booking.getBookingId()).get();
+		assertThat(expected.getOrderSubmit()).isEqualTo(false);
 	}
 }

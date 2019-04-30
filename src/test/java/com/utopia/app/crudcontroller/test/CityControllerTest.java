@@ -41,68 +41,68 @@ public class CityControllerTest {
     private ObjectMapper objectMapper;
 	
 	@Test
-	public void get_list_of_citys_return_ok() throws Exception {
-		City c = new City();
-		c.setCityId((long)1);
-		c.setCityName("Seattle");
-		c.setCountry("USA");
+	public void getListOfCitysReturnOk() throws Exception {
+		City city = new City();
+		city.setCityId((long)1);
+		city.setCityName("Seattle");
+		city.setCountry("USA");
 		List<City> cities = new ArrayList<>();
-		cities.add(c);
+		cities.add(city);
 		
 		when(service.getCityAll()).thenReturn(cities);
 		
 		mvc.perform(get("/adm/cities").accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$",hasSize(1)))
-		.andExpect(jsonPath("$[0].cityName",is("Seattle")))
-		.andExpect(jsonPath("$[0].country",is("USA")));
+		.andExpect(jsonPath("$[0].cityName",is(city.getCityName())))
+		.andExpect(jsonPath("$[0].country",is(city.getCountry())));
 	}
 	
 	@Test
-	public void get_one_city_return_ok() throws Exception {
-		City c = new City();
-		c.setCityId((long)1);
-		c.setCityName("Seattle");
-		c.setCountry("USA");
+	public void getOneCityReturnOk() throws Exception {
+		City city = new City();
+		city.setCityId((long)1);
+		city.setCityName("Seattle");
+		city.setCountry("USA");
 		
-		when(service.getCityById(1)).thenReturn(c);
+		when(service.getCityById(1)).thenReturn(city);
 		
 		mvc.perform(get("/adm/cities/1").accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
-		.andExpect(jsonPath("$.cityName",is("Seattle")))
-		.andExpect(jsonPath("$.country",is("USA")));
+		.andExpect(jsonPath("$.cityName",is(city.getCityName())))
+		.andExpect(jsonPath("$.country",is(city.getCountry())));
 	}
 	
 	@Test
-	public void create_city_return_created() throws Exception {
-		City c = new City();
-		c.setCityId((long)1);
-		c.setCityName("Seattle");
-		c.setCountry("USA");
+	public void createCityReturnCreated() throws Exception {
+		City city = new City();
+		city.setCityId((long)1);
+		city.setCityName("Seattle");
+		city.setCountry("USA");
 		
 		mvc.perform(post("/adm/city")
 				.accept(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsBytes(c))				
+				.content(objectMapper.writeValueAsBytes(city))				
 			    .contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isCreated());
 	}
 	
 	@Test
-	public void update_city_return_accepted() throws Exception{
-		City c = new City();
-		c.setCityId((long)1);
-		c.setCityName("Seattle");
-		c.setCountry("USA");
+	public void updateCityReturnAccepted() throws Exception{
+		City city = new City();
+		city.setCityId((long)1);
+		city.setCityName("Seattle");
+		city.setCountry("USA");
 		
 		mvc.perform(put("/adm/city")
 				.accept(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsBytes(c))				
+				.content(objectMapper.writeValueAsBytes(city))				
 			    .contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isAccepted());
 	}
 	
 	@Test
-	public void delete_city_return_accepted() throws Exception {
+	public void deleteCityReturnAccepted() throws Exception {
 		mvc.perform(delete("/adm/city/1")
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))

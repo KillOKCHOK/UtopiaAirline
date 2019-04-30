@@ -23,27 +23,27 @@ public class CityRepoTest {
 	private TestEntityManager entityManager;
 
 	@Autowired
-	private ICityDao crepo;
+	private ICityDao cityDao;
 	
 	@Test
-	public void it_should_save_city() {
-		City c = new City();
-		c.setCityName("Seattle");
-		c.setCountry("USA");
-		c = entityManager.persistAndFlush(c);
+	public void itShouldSaveCity() {
+		City city = new City();
+		city.setCityName("Seattle");
+		city.setCountry("USA");
+		city = entityManager.persistAndFlush(city);
 		
-		City cTest = crepo.findById(c.getCityId()).get();
-		assertThat(cTest).isEqualTo(c);
+		City expected = cityDao.findById(city.getCityId()).get();
+		assertThat(expected).isEqualTo(city);
 	}
 	
 	@Test
-	public void it_should_not_be_null() {
-		City c = new City();
-		c.setCityName("Buffalo");
-		c.setCountry("USA");
-		c = entityManager.persistAndFlush(c);
+	public void itShouldNotBeNull() {
+		City city = new City();
+		city.setCityName("Buffalo");
+		city.setCountry("USA");
+		city = entityManager.persistAndFlush(city);
 		
-		City cTest = crepo.findById(c.getCityId()).get();
-		assertThat(cTest).isNotNull();
+		City expected = cityDao.findById(city.getCityId()).get();
+		assertThat(expected).isNotNull();
 	}
 }

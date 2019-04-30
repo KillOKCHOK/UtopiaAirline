@@ -23,25 +23,25 @@ public class RoleRepoTest {
 	private TestEntityManager entityManager;
 
 	@Autowired
-	private IRoleDao rrepo; 
+	private IRoleDao roleDao; 
 	
 	@Test
-	public void it_should_not_be_null() {
-		Role r = new Role();
-		r.setRoleName("Agent");
-		r = entityManager.persistAndFlush(r);
+	public void itShouldNotBeNull() {
+		Role role = new Role();
+		role.setRoleName("Agent");
+		role = entityManager.persistAndFlush(role);
 		
-		Role rTest = rrepo.findById(r.getRoleId()).get();
-		assertThat(rTest).isNotNull();
+		Role expected = roleDao.findById(role.getRoleId()).get();
+		assertThat(expected).isNotNull();
 	}
 	
 	@Test
-	public void it_should_save_role() {
-		Role r = new Role();
-		r.setRoleName("Agent");
-		r = entityManager.persistAndFlush(r);
+	public void itShouldSaveRole() {
+		Role role = new Role();
+		role.setRoleName("Agent");
+		role = entityManager.persistAndFlush(role);
 		
-		Role rTest = rrepo.findById(r.getRoleId()).get();
-		assertThat(rTest).isEqualTo(r);
+		Role expected = roleDao.findById(role.getRoleId()).get();
+		assertThat(expected).isEqualTo(role);
 	}
 }

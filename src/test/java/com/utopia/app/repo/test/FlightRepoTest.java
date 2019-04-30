@@ -28,57 +28,60 @@ public class FlightRepoTest {
 	private TestEntityManager entityManager;
 
 	@Autowired
-	private IFlightDao frepo;
+	private IFlightDao flightDao;
 	
 	@Test
-	public void it_should_not_be_null() {
-		Flight f = new Flight();
-		f.setCapacity(200);
-		f.setDepDateTime(new Date());
-		f = entityManager.persistAndFlush(f);
+	public void itShouldNotBeNull() {
+		Flight flight = new Flight();
+		flight.setCapacity(200);
+		flight.setDepDateTime(new Date());
+		flight = entityManager.persistAndFlush(flight);
 		
-		assertThat(frepo.findById(f.getFlightId()).get()).isNotNull();
+		Flight expected = flightDao.findById(flight.getFlightId()).get();
+		
+		assertThat(expected).isNotNull();
 	}
 	
 	@Test
-	public void it_should_save_flight() {
-		Flight f = new Flight();
-		f.setCapacity(200);
-		f.setDepDateTime(new Date());
-		f = entityManager.persistAndFlush(f);
+	public void itShouldSaveFlight() {
+		Flight flight = new Flight();
+		flight.setCapacity(200);
+		flight.setDepDateTime(new Date());
+		flight = entityManager.persistAndFlush(flight);
 
-		Flight fTest = frepo.findById(f.getFlightId()).get();
-		assertThat(fTest).isEqualTo(f);
+		Flight fTest = flightDao.findById(flight.getFlightId()).get();
+		assertThat(fTest).isEqualTo(flight);
 	}
 	
 	@Test 
-	public void it_should_get_list_of_flights() {		
+	public void itShouldGetListOfFlights() {		
 		Date date = new Date();
-		int dayDep = 2;
+		int days = 2;
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
-		calendar.add(Calendar.DAY_OF_YEAR, dayDep);
-		Date dep = calendar.getTime();
+		calendar.add(Calendar.DAY_OF_YEAR, days);
+		Date depatureDate = calendar.getTime();
 				
-		Airport a = new Airport();
-		a.setAirportCode("SEA");
-		a.setAirportName("SeaTac");
-		a = entityManager.persistAndFlush(a);
-		Airport a2 = new Airport();
-		a2.setAirportCode("DCA");
-		a2.setAirportName("Reagan");
-		a2 = entityManager.persistAndFlush(a2);
+		Airport airport1 = new Airport();
+		airport1.setAirportCode("SEA");
+		airport1.setAirportName("SeaTac");
+		airport1 = entityManager.persistAndFlush(airport1);
+		Airport airport2 = new Airport();
+		airport2.setAirportCode("DCA");
+		airport2.setAirportName("Reagan");
+		airport2 = entityManager.persistAndFlush(airport2);
 		
-		Flight f = new Flight();
-		f.setCapacity(200);
-		f.setDepDateTime(dep);
-		f.setDepAirport(a);
-		f.setArrAirport(a2);
-		f = entityManager.persistAndFlush(f);
+		Flight flight = new Flight();
+		flight.setCapacity(200);
+		flight.setDepDateTime(depatureDate);
+		flight.setDepAirport(airport1);
+		flight.setArrAirport(airport2);
+		flight = entityManager.persistAndFlush(flight);
 		
-		long id1 = a.getAirportId();
-		long id2 = a2.getAirportId();
-		List<Flight> flights = frepo.getFlightList(dep, id1, id2);
-		assertThat(flights.size()).isEqualTo(1);
+		long id1 = airport1.getAirportId();
+		long id2 = airport2.getAirportId();
+		List<Flight> expected = flightDao.getFlightList(depatureDate, id1, id2);
+		assertThat(expected.size()).isEqualTo(1);
 	}
+	
 }

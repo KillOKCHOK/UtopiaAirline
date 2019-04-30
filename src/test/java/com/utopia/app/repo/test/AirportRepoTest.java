@@ -26,32 +26,32 @@ public class AirportRepoTest {
 	private TestEntityManager entityManager;
 
 	@Autowired
-	private IAirportDao arepo;
+	private IAirportDao airportDao;
 
 	@Test
-	public void it_should_save_airport() {
-		Airport a = new Airport();
-		a.setAirportCode("IAD");
-		a = entityManager.persistAndFlush(a);
+	public void itShouldSaveAirport() {
+		Airport airport = new Airport();
+		airport.setAirportCode("IAD");
+		airport = entityManager.persistAndFlush(airport);
 
-		Airport aTest = arepo.findById(a.getAirportId()).get();
-		assertThat(aTest).isEqualTo(a);
+		Airport expected = airportDao.findById(airport.getAirportId()).get();
+		assertThat(expected).isEqualTo(airport);
 	}
 	
 	@Test
-	public void it_should_find_airport_byAirportName() {
-		Airport a = new Airport();
-		a.setAirportCode("IAD");
-		a.setAirportName("Dulles");
-		City c = new City();
-		c.setCityName("Washington");
-		c.setCountry("USA");
-		c = entityManager.persistAndFlush(c);
-		a.setCity(c);
-		a=entityManager.persistAndFlush(a);
+	public void itShouldFindAirportByAirportName() {
+		Airport airport = new Airport();
+		airport.setAirportCode("IAD");
+		airport.setAirportName("Dulles");
+		City city = new City();
+		city.setCityName("Washington");
+		city.setCountry("USA");
+		city = entityManager.persistAndFlush(city);
+		airport.setCity(city);
+		airport=entityManager.persistAndFlush(airport);
 		
-		List<Airport> airports = arepo.getAirportListByName("Washington");
+		List<Airport> expected = airportDao.getAirportListByName("Washington");
 		
-		assertThat(airports.size()).isEqualTo(1);
+		assertThat(expected.size()).isEqualTo(1);
 	}
 }

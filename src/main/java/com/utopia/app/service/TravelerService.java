@@ -38,28 +38,27 @@ public class TravelerService {
 	private IUserDao userDao;
 	@Autowired
 	private IPaymentDao paymentDao;
-
-	public List<Airport> getAirportList(String name) {
+	
+	public List<Airport> getAirportList(String name) throws Exception {
 		String serchName = "%" + name + "%";
 		try {
 			return airportDao.getAirportListByName(serchName);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+		}catch (Exception e) {
+			throw e;
 		}
+		
 	}
 
-	public List<Flight> getFightList(Date date, Long depAirportId, Long arrAirportId) {
+	public List<Flight> getFightList(Date date, Long depAirportId, Long arrAirportId) throws Exception{
 		try {
 			return flightDao.getFlightList(date, depAirportId, arrAirportId);
 		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			throw e;
 		}
 	}
 
 	@Transactional
-	public void createBookingReserv(List<Flight> flights, int travelerNumber) {
+	public void createBookingReserv(List<Flight> flights, int travelerNumber) throws Exception{
 		try {
 			// reserve seat (decrease flight capacity)
 			for(int flight = 0; flight < flights.size(); flight++) {
@@ -67,12 +66,12 @@ public class TravelerService {
 				flightDao.decreaseFlightCapacity(travelerNumber, flights.get(flight).getFlightId());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw e;
 		}
 	}
 	
 	@Transactional
-	public Booking confirmBookingReserv(List<User> users, Payment payment, Booking booking, List<Flight> flights) {
+	public Booking confirmBookingReserv(List<User> users, Payment payment, Booking booking, List<Flight> flights) throws Exception{
 		try {
 			
 			// Add booking & its user
@@ -121,12 +120,11 @@ public class TravelerService {
 			}
 			return booking;
 		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			throw e;
 		}
 	}
 	
-	public Booking readBooking(String confirmantionNum, String firstName, String lastName) {
+	public Booking readBooking(String confirmantionNum, String firstName, String lastName) throws Exception{
 		try {
 			//get booking by confirmantionNum
 			List<Booking> bookings = bookingDao.getBooking(confirmantionNum, firstName,lastName);
@@ -138,13 +136,12 @@ public class TravelerService {
 			booking.setTickets(ticketDao.findAllByBooking(booking));
 			return booking;
 		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			throw e;
 		}
 	}
 	
 	@Transactional
-	public Booking changeBookingReserv(Booking booking, List<Flight> flights) {
+	public Booking changeBookingReserv(Booking booking, List<Flight> flights) throws Exception{
 		try {
 			// update booking user info
 			userDao.save(booking.getUser());
@@ -187,13 +184,12 @@ public class TravelerService {
 			Booking newBooking = bookingDao.getOne(booking.getBookingId());
 			return newBooking;
 		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			throw e;
 		}
 	}
 	
 	@Transactional
-	public void cancelBooking(Long bookingId) {
+	public void cancelBooking(Long bookingId) throws Exception{
 		try {
 			
 			//add flight capacity back
@@ -221,7 +217,7 @@ public class TravelerService {
 			paymentDao.cancelBooking(bookingId);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw e;
 		}
 	}
 

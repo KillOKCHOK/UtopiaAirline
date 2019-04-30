@@ -33,7 +33,6 @@ public class CityService {
 	}
 	
 	public void deleteCity(long cityId) {
-		System.out.print(cityId);
 		citydao.deleteById(cityId);
 	}
 	

@@ -2,6 +2,7 @@ package com.utopia.app.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,38 +15,38 @@ import javax.persistence.Table;
 public class Payment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "transaction_id")
-	private int transactionId;
+	@Column(name = "payment_id")
+	private Long paymentId;
 
 	@Column(name = "payment_status")
-	private String paymentStatus;
+	private Boolean paymentStatus;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "booking_id")
+	private Booking booking;
 
-	public int getTransactionId() {
-		return transactionId;
+	public Long getPaymentId() {
+		return paymentId;
 	}
 
-	public void setTransactionId(int transactionId) {
-		this.transactionId = transactionId;
-	}
-
-	public String getPaymentStatus() {
+	public Boolean getPaymentStatus() {
 		return paymentStatus;
 	}
 
-	public void setPayment_status(String paymentStatus) {
+	public void setPaymentStatus(Boolean paymentStatus) {
 		this.paymentStatus = paymentStatus;
 	}
 
-	public User getUser() {
-		return user;
+	public Booking getBooking() {
+		return booking;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
+
+	public void setPaymentId(Long paymentId) {
+		this.paymentId = paymentId;
 	}
 
 }

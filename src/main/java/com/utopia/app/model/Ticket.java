@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "ticket")
 public class Ticket {
@@ -17,18 +19,19 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="ticket_id")
-    private Integer ticketId;
+    private Long ticketId;
     
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY )
     @JoinColumn(name = "user_id" )
     private User user;
     
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY )
     @JoinColumn(name = "flight_id" )
     private Flight flight;
     
     @ManyToOne(fetch=FetchType.LAZY )
     @JoinColumn(name="booking_id")
+    @JsonIgnore
     private Booking booking;
     
     
@@ -41,11 +44,11 @@ public class Ticket {
 		this.booking = booking;
 	}
 
-	public Integer getTicketId() {
+	public Long getTicketId() {
         return ticketId;
     }
 
-    public void setTicketId(Integer ticketId) {
+    public void setTicketId(Long ticketId) {
         this.ticketId = ticketId;
     }
 

@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.utopia.app.crudcontroller.test.CityControllerTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.585 s <<< FAILURE! - in com.utopia.app.crudcontroller.test.CityControllerTest
+get_one_city_return_ok(com.utopia.app.crudcontroller.test.CityControllerTest)  Time elapsed: 0.025 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<405>
+	at com.utopia.app.crudcontroller.test.CityControllerTest.get_one_city_return_ok(CityControllerTest.java:71)
+

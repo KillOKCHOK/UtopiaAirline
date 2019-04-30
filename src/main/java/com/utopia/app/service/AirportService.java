@@ -4,13 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.utopia.app.idao.IAirportDao;
 import com.utopia.app.model.Airport;
 
 @Service
-@Transactional
 public class AirportService {
 	
 	@Autowired

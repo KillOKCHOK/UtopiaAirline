@@ -1,5 +1,7 @@
 package com.utopia.app.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,11 +11,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "ticket")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "ticketId")
 public class Ticket {
 
     @Id
@@ -34,9 +41,47 @@ public class Ticket {
     @JsonIgnore
     private Booking booking;
     
-    
+    @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="create_by")
+	private User createUser;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="update_by")
+	private User updateUser;
+	
+	@Column(name = "create_date")
+    @Temporal(TemporalType.TIMESTAMP)
+	private Date createDate;
+	
+	@Column(name = "update_date")
+    @Temporal(TemporalType.TIMESTAMP)
+	private Date updateDate;
 
-    public Booking getBooking() {
+	public Long getTicketId() {
+		return ticketId;
+	}
+
+	public void setTicketId(Long ticketId) {
+		this.ticketId = ticketId;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Flight getFlight() {
+		return flight;
+	}
+
+	public void setFlight(Flight flight) {
+		this.flight = flight;
+	}
+
+	public Booking getBooking() {
 		return booking;
 	}
 
@@ -44,28 +89,36 @@ public class Ticket {
 		this.booking = booking;
 	}
 
-	public Long getTicketId() {
-        return ticketId;
-    }
+	public User getCreateUser() {
+		return createUser;
+	}
 
-    public void setTicketId(Long ticketId) {
-        this.ticketId = ticketId;
-    }
+	public void setCreateUser(User createUser) {
+		this.createUser = createUser;
+	}
 
-    public User getUser() {
-        return user;
-    }
+	public User getUpdateUser() {
+		return updateUser;
+	}
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+	public void setUpdateUser(User updateUser) {
+		this.updateUser = updateUser;
+	}
 
-    public Flight getFlight() {
-        return flight;
-    }
+	public Date getCreateDate() {
+		return createDate;
+	}
 
-    public void setFlight(Flight flight) {
-        this.flight = flight;
-    }
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
     
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,9 +15,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity( name = "booking")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "bookingId")
 public class Booking {
 
 	@Id
@@ -24,7 +27,7 @@ public class Booking {
 	@Column(name="booking_id")
 	private Long bookingId;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private User user;
 	
@@ -34,19 +37,19 @@ public class Booking {
 	@Column
 	private Boolean orderSubmit;
 	
-	@ManyToOne
-	@JoinColumn(name="create_user_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="create_by")
 	private User createUser;
 	
 	@ManyToOne
-	@JoinColumn(name="update_user_id")
+	@JoinColumn(name="update_by")
 	private User updateUser;
 	
-	@Column(name = "create_dateTime")
+	@Column(name = "create_date")
     @Temporal(TemporalType.TIMESTAMP)
 	private Date createDate;
 	
-	@Column(name = "update_dateTime")
+	@Column(name = "update_date")
     @Temporal(TemporalType.TIMESTAMP)
 	private Date updateDate;
 	
@@ -54,7 +57,6 @@ public class Booking {
 	private List<Ticket> tickets;
 	
 	@OneToMany(mappedBy="booking")
-	@JsonIgnore
 	private List<Payment> payment;
 
 	public Long getBookingId() {
@@ -73,11 +75,11 @@ public class Booking {
 		this.user = user;
 	}
 
-	public String getConfirmationCode() {
+	public String getConfirmationNum() {
 		return confirmationNum;
 	}
 
-	public void setConfirmationCode(String confirmationNum) {
+	public void setConfirmationNum(String confirmationNum) {
 		this.confirmationNum = confirmationNum;
 	}
 

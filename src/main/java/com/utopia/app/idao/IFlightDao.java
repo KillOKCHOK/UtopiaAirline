@@ -20,14 +20,18 @@ public interface IFlightDao extends JpaRepository<Flight,Long> {
 	List<Flight> getFlightList(@Param("date") Date date, @Param("depAirportId") Long depAirportId, @Param("arrAirportId") Long arrAirportId);
 	
 	@Modifying
-	@Query(value = "update flight f set f.capacity = f.capacity - :num where f.flight_id = :flightId", nativeQuery = true)
-	void decreaseFlightCapacity(@Param("num") int num, @Param("flightId") Long flightId);
+	@Query(value = "update flight f set f.capacity = f.capacity - :num, update_by =:updateUserId,  "
+			+ "update_date =:date  where f.flight_id = :flightId", nativeQuery = true)
+	void decreaseFlightCapacity(@Param("num") int num, @Param("flightId") Long flightId,
+			@Param("updateUserId") Long updateUserId,@Param("date") Date date);
 	
 	@Query(value = "Select * from flight where flight_id in "
 			+ "(SELECT flight_id FROM ticket where booking_id = :bookingId Group by flight_id)", nativeQuery = true)
 	List<Flight> getFlightByBookingId(@Param("bookingId") Long bookingId);
 	
 	@Modifying
-	@Query(value = "update flight f set f.capacity = f.capacity + :num where f.flight_id = :flightId", nativeQuery = true)
-	void increateFlightCapacity(@Param("num") int num, @Param("flightId") Long flightId);
+	@Query(value = "update flight f set f.capacity = f.capacity + :num, update_by =:updateUserId, "
+			+ "update_date =:date  where f.flight_id = :flightId", nativeQuery = true)
+	void increaseFlightCapacity(@Param("num") int num, @Param("flightId") Long flightId,
+			@Param("updateUserId") Long updateUserId,@Param("date") Date date);
 }

@@ -14,11 +14,12 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="flight")
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "flightId")
 public class Flight {
     
     @Id
@@ -34,11 +35,11 @@ public class Flight {
     @Temporal(TemporalType.TIMESTAMP)
     private Date arrDateTime;
     
-    @ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="dep_airport_id")
     private Airport depAirport;
     
-    @ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="arr_airport_id")
     private Airport arrAirport;
     
@@ -48,8 +49,71 @@ public class Flight {
     @Column
     private Float price;
     
-    
-    public Float getPrice() {
+    @ManyToOne
+	@JoinColumn(name="create_by")
+	private User createUser;
+	
+	@ManyToOne
+	@JoinColumn(name="update_by")
+	private User updateUser;
+	
+	@Column(name = "create_date")
+    @Temporal(TemporalType.TIMESTAMP)
+	private Date createDate;
+	
+	@Column(name = "update_date")
+    @Temporal(TemporalType.TIMESTAMP)
+	private Date updateDate;
+
+	public Long getFlightId() {
+		return flightId;
+	}
+
+	public void setFlightId(Long flightId) {
+		this.flightId = flightId;
+	}
+
+	public Date getDepDateTime() {
+		return depDateTime;
+	}
+
+	public void setDepDateTime(Date depDateTime) {
+		this.depDateTime = depDateTime;
+	}
+
+	public Date getArrDateTime() {
+		return arrDateTime;
+	}
+
+	public void setArrDateTime(Date arrDateTime) {
+		this.arrDateTime = arrDateTime;
+	}
+
+	public Airport getDepAirport() {
+		return depAirport;
+	}
+
+	public void setDepAirport(Airport depAirport) {
+		this.depAirport = depAirport;
+	}
+
+	public Airport getArrAirport() {
+		return arrAirport;
+	}
+
+	public void setArrAirport(Airport arrAirport) {
+		this.arrAirport = arrAirport;
+	}
+
+	public Integer getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(Integer capacity) {
+		this.capacity = capacity;
+	}
+
+	public Float getPrice() {
 		return price;
 	}
 
@@ -57,52 +121,36 @@ public class Flight {
 		this.price = price;
 	}
 
-	public Long getFlightId() {
-        return flightId;
-    }
+	public User getCreateUser() {
+		return createUser;
+	}
 
-    public void setFlightId(Long flightId) {
-        this.flightId = flightId;
-    }
+	public void setCreateUser(User createUser) {
+		this.createUser = createUser;
+	}
 
-    public Date getDepDateTime() {
-        return depDateTime;
-    }
+	public User getUpdateUser() {
+		return updateUser;
+	}
 
-    public void setDepDateTime(Date depDateTime) {
-        this.depDateTime = depDateTime;
-    }
+	public void setUpdateUser(User updateUser) {
+		this.updateUser = updateUser;
+	}
 
-    public Date getArrDateTime() {
-        return arrDateTime;
-    }
+	public Date getCreateDate() {
+		return createDate;
+	}
 
-    public void setArrDateTime(Date arrDateTime) {
-        this.arrDateTime = arrDateTime;
-    }
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 
-    public Airport getDepAirport() {
-        return depAirport;
-    }
+	public Date getUpdateDate() {
+		return updateDate;
+	}
 
-    public void setDepAirport(Airport depAirport) {
-        this.depAirport = depAirport;
-    }
-
-    public Airport getArrAirport() {
-        return arrAirport;
-    }
-
-    public void setArrAirport(Airport arrAirport) {
-        this.arrAirport = arrAirport;
-    }
-
-    public Integer getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(Integer capacity) {
-        this.capacity = capacity;
-    }
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
     
 }

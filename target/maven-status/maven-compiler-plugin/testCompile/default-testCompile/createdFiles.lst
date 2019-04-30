@@ -1,16 +1,1 @@
-com/utopia/app/crudcontroller/test/CityControllerTest.class
-com/utopia/app/repo/test/UserRepoTest.class
-com/utopia/app/crudcontroller/test/PaymentControllerTest.class
-com/utopia/app/crudcontroller/test/UserControllerTest.class
-com/utopia/app/repo/test/RoleRepoTest.class
-com/utopia/app/repo/test/FlightRepoTest.class
-com/utopia/app/repo/test/CityRepoTest.class
-com/utopia/app/crudcontroller/test/RoleControllerTest.class
-com/utopia/app/repo/test/TicketRepoTest.class
-com/utopia/app/repo/test/BookingRepoTest.class
-com/utopia/app/crudcontroller/test/TicketControllerTest.class
-com/utopia/app/crudcontroller/test/BookingControllerTest.class
 com/utopia/app/test/UtopiaProjectApplicationTests.class
-com/utopia/app/crudcontroller/test/FlightControllerTest.class
-com/utopia/app/crudcontroller/test/AirportControllerTest.class
-com/utopia/app/repo/test/AirportRepoTest.class
